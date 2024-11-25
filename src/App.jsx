@@ -6,6 +6,8 @@ import { Toaster } from "react-hot-toast";
 import CompleteProfile from "./pages/CompleteProfile";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import PageLayout from "./ui/PageLayout";
+import Owner from "./pages/Owner";
 const queryClient = new QueryClient();
 function App() {
   return (
@@ -15,6 +17,9 @@ function App() {
         <Routes>
           <Route path="/auth" element={<Auth />} />
           <Route path="/complete-Profile" element={<CompleteProfile />} />
+          <Route element={<PageLayout />}>
+            <Route path="/owner" element={<Owner />} />
+          </Route>
           <Route path="/" element={<Home />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
