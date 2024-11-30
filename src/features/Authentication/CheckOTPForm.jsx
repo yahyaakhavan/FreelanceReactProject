@@ -67,7 +67,7 @@ export default function CheckOTPForm({
     };
   }, [timer]);
   return (
-    <div>
+    <div className="p-2">
       <button
         className="absolute top-0 right-0 pt-10 sm:static sm:pt-0"
         onClick={onBack}

@@ -18,3 +18,8 @@ export function completeProfile(data) {
     return res.data.data;
   });
 }
+export function getUser() {
+  return http.get("/user/profile").then((res) => {
+    return res.data.data;
+  });
+}

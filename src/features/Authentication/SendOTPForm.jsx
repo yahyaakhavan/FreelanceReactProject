@@ -8,7 +8,7 @@ export default function SendOTPForm({
   sendOtpHandler,
 }) {
   return (
-    <div>
+    <div className="p-2">
       <form className="space-y-8" onSubmit={sendOtpHandler}>
         <TextField
           label={"لطفا شماره تلفن همراه خود را وارد کنید"}
