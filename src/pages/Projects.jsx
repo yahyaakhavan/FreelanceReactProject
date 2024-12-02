@@ -1,3 +1,9 @@
+import ProjectsTable from "../features/Projects/ProjectsTable";
+
 export default function Projects() {
-  return <div>Owner projects</div>;
+  return (
+    <div>
+      <ProjectsTable />
+    </div>
+  );
 }
