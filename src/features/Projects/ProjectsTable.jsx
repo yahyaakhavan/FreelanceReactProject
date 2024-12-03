@@ -1,10 +1,14 @@
 import { useOwnerProjects } from "./useOwnerProjects";
 import Loader from "../../ui/Loader";
 import Empty from "../../ui/Empty";
+import truncateText from "../../utils/truncateText";
+import toLocalDateShort from "../../utils/toLocalDateShort";
+import { toPersianNumbersWithComma } from "../../utils/toPersianNumbers";
 export default function ProjectsTable() {
   const { projects, isLoading } = useOwnerProjects();
   console.log(projects);
   if (isLoading) return <Loader />;
+  if (!projects) return <p>no db</p>;
   if (!projects.length) return <Empty resourceName="پروژه ای" />;
 
   return (
@@ -28,10 +32,10 @@ export default function ProjectsTable() {
             return (
               <tr key={project._id}>
                 <td>{index + 1}</td>
-                <td>{project.title}</td>
+                <td>{truncateText(project.title, 30)}</td>
                 <td>{project.category.title}</td>
-                <td>{project.budget}</td>
-                <td>{project.deadline}</td>
+                <td>{toPersianNumbersWithComma(project.budget)}</td>
+                <td>{toLocalDateShort(project.deadline)}</td>
                 <td>
                   <div className="flex flex-wrap items-center max-w-[200px] gap-2">
                     {project.tags.map((tag) => {

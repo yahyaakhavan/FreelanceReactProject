@@ -6,8 +6,8 @@ import { getOtp } from "../../services/authServices";
 import toast from "react-hot-toast";
 
 export default function AuthContainer() {
-  const [phoneNumber, setPhoneNumber] = useState("09126085623");
-  const [step, Setstep] = useState(2);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [step, Setstep] = useState(1);
   const renderStep = () => {
     switch (step) {
       case 1:
