@@ -107,6 +107,9 @@
   .badge--danger {
     @apply bg-red-500 text-white;
   }
+  .icon {
+    @apply w-5 h-5;
+  }
 }
 
 html,
