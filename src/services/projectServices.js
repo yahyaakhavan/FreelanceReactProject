@@ -5,3 +5,11 @@ export function getOwnerProjectsAPI() {
     return res.data.data;
   });
 }
+
+export function removeProjectAPI(id) {
+  console.log(id);
+  return http.delete(`/project/${id}`).then((res) => {
+    console.log(res); //res.data.data=>>پروژه با موفقیت حذف شد
+    return res.data.data;
+  });
+}

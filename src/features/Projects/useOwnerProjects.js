@@ -7,7 +7,7 @@ export function useOwnerProjects() {
   //And see how destructurin the result of useQuery
   //Next destructure data result and if it does not have value return an empty object
   const { data, isLoading } = useQuery({
-    queryKey: ["projects"],
+    queryKey: ["owner-projects"],
     queryFn: getOwnerProjectsAPI,
   });
   const { projects } = data || {};
