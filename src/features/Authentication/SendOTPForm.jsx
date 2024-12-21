@@ -2,19 +2,26 @@
 import TextField from "../../ui/TextField";
 import Loader from "../../ui/Loader";
 export default function SendOTPForm({
-  phoneNumber,
-  onChange,
+  // phoneNumber,
+  // onChange,
+  register,
   isPending,
   sendOtpHandler,
+  errors,
 }) {
   return (
     <div className="p-2">
       <form className="space-y-8" onSubmit={sendOtpHandler}>
         <TextField
           label={"لطفا شماره تلفن همراه خود را وارد کنید"}
-          onChange={onChange}
-          value={phoneNumber}
-          name={"PhoneNumber"}
+          register={register}
+          type="number"
+          required
+          // onChange={onChange}==> we use react hook form
+          // value={phoneNumber}
+          name="phoneNumber"
+          validationSchema={{ required: "شماره همراه خود را وارد نمایید." }}
+          errors={errors}
         />
         {isPending ? (
           <Loader />

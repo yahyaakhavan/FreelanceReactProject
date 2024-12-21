@@ -4,34 +4,58 @@ import CheckOTPForm from "./CheckOTPForm";
 import { useMutation } from "@tanstack/react-query";
 import { getOtp } from "../../services/authServices";
 import toast from "react-hot-toast";
+import { useForm } from "react-hook-form";
 
 export default function AuthContainer() {
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const sendOtpHandler = async (data) => {
+    console.log(data);
+    //This data comes from react hook form and it is an object with phoneNumber property and it's value
+    try {
+      Setstep(2);
+      //This is an async request so, we put async and await keywords
+      const { message } = await mutateAsync(data); //This data comes from react hook form and it is an object with phoneNumber property and it's value
+      toast.success(message);
+    } catch (error) {
+      toast.error(error?.response?.data?.message); // we put ?. if it has not value we get undefiend instead of null
+    }
+  };
+  //const [phoneNumber, setPhoneNumber] = useState(""); ==> We use react hook form, so we do not need this state
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    formState: { errors }, //If we want to have validation error, need to have errors from formState.
+  } = useForm();
+
   const [step, Setstep] = useState(1);
   const renderStep = () => {
     switch (step) {
       case 1:
         return (
           <SendOTPForm
+            register={register}
             SetStep={Setstep}
-            phoneNumber={phoneNumber}
-            onChange={(e) => {
-              setPhoneNumber(e.target.value);
-            }}
-            sendOtpHandler={sendOtpHandler}
+            //phoneNumber={phoneNumber}
+            // onChange={(e) => {
+            //   setPhoneNumber(e.target.value);
+            // }}
+            sendOtpHandler={handleSubmit(sendOtpHandler)}
             isPending={isPending}
+            errors={errors}
           />
         );
       case 2:
         return (
           <CheckOTPForm
-            phoneNumber={phoneNumber}
+            phoneNumber={getValues("phoneNumber")} //we do not use react hook form in CheckOTPForm component
+            //  but, we need phoneNumber, so we use getValues to
+            //  pass the field to this component
             onBack={() => {
               Setstep((current) => {
                 return current - 1;
               });
             }}
-            sendOtpHandler={sendOtpHandler}
+            sendOtpHandler={handleSubmit(sendOtpHandler)}
             otpResponse={otpResponse}
           />
         );
@@ -48,20 +72,7 @@ export default function AuthContainer() {
     mutationFn: getOtp,
   });
 
-  const sendOtpHandler = async (e) => {
-    e.preventDefault();
-    try {
-      Setstep(2);
-      //This is an async request so, we put async and await keywords
-      const data = await mutateAsync({ phoneNumber: phoneNumber });
-      //toast.success(data.message);
-      console.log(data);
-    } catch (error) {
-      toast.error(error?.response?.data?.message); // we put ?. if it has not value we get undefiend instead of null
-    }
-  };
-
   return (
-    <div className="w-full sm:max-w-sm sm:border sm:p-8">{renderStep()}</div>
+    <div className="w-full sm:max-w-sm sm:border sm:p-8">{renderStep()}</div> // Inside div tag we call renderStep() function.
   );
 }

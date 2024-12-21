@@ -1,6 +1,7 @@
 import http from "./httpService";
 
 export function getOtp(data /*{"phoneNumber":"09126085623"}*/) {
+  console.log(data);
   return http.post("/user/get-otp", data).then((res) => {
     return res.data.data;
   });
@@ -8,7 +9,7 @@ export function getOtp(data /*{"phoneNumber":"09126085623"}*/) {
 export function checkOtp(
   data /*{"phoneNumber":"09126085623","otp":"123456"}*/
 ) {
-  //It returns a promis and because the data's structure that this request returns so we write res.data.data
+  //It return user data, so we write res.data.data
   return http.post("/user/check-otp", data).then((res) => {
     return res.data.data;
   });

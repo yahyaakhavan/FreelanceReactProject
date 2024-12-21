@@ -15,6 +15,8 @@ export default function CheckOTPForm({
   sendOtpHandler,
   otpResponse,
 }) {
+  console.log(phoneNumber);
+  console.log(otpResponse);
   const [otp, setOtp] = useState("");
   const [timer, Settimer] = useState(TIMER_VALUE);
   const navigate = useNavigate();
@@ -75,7 +77,7 @@ export default function CheckOTPForm({
         <HiArrowRight className="w-6 h-6 text-secondary-500" />
       </button>
       <form className="space-y-10" onSubmit={checkOTPHandler}>
-        {otpResponse && (
+        {otpResponse && ( //If we have real sms provider, we have message, that said "we send an OTP to number ..."
           <p className="flex items-center gap-x-2 my-4">
             <span>{otpResponse?.message}</span>
             <button onClick={onBack}>

@@ -1,6 +1,7 @@
 import { FaPlus } from "react-icons/fa";
 import Modal from "../../ui/Modal";
 import { useState } from "react";
+import CreateProjectForm from "./CreateProjectForm";
 
 export default function ProjectsHeader() {
   const [isAddProject, setIsAddProject] = useState(false);
@@ -13,7 +14,9 @@ export default function ProjectsHeader() {
         onClose={() => {
           setIsAddProject(false);
         }}
-      ></Modal>
+      >
+        <CreateProjectForm />
+      </Modal>
       <button
         className=" flex gap-x-2 items-center btn btn--primary"
         onClick={() => {

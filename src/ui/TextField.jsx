@@ -1,19 +1,69 @@
+import { toPersianNumbersWithComma } from "../utils/toPersianNumbers";
+
 /* eslint-disable react/prop-types */
-export default function TextField({ label, name, value, onChange }) {
+export default function TextField({
+  label,
+  name,
+  register,
+  type = "text",
+  required,
+  validationSchema,
+  errors,
+
+  setValue,
+  /*value, onChange*/
+}) {
+  console.log(register(name), errors);
+
   return (
     <div>
-      <label className="mb-2 block" htmlFor={name}>
+      <label className="mb-2 block text-secondary-700" htmlFor={name}>
         {label}
+        {required && <span className="text-error">*</span>}
       </label>
-      <input
-        className="textField__input"
-        value={value}
-        onChange={onChange}
-        type="text"
-        id={name}
-        name={name}
-        autoComplete="off"
-      />
+      {name === "projectBudget" ? (
+        <input
+          {...register("projectBudget", {
+            onChange: (e) => {
+              const persianValue = toPersianNumbersWithComma(e.target.value);
+
+              setValue("projectBudget", persianValue, {
+                shouldValidate: true,
+              });
+            },
+            pattern: {
+              value: validationSchema.pattern.value,
+              message: validationSchema.pattern.message,
+            },
+            required: validationSchema.required,
+          })}
+          className="textField__input"
+          // value={value}
+          // onChange={onChange}
+          //name={name}
+          type={type}
+          id="projectBudget"
+          autoComplete="off"
+          placeholder="بودجه پروژه را مشخص نمایید."
+        />
+      ) : (
+        <input
+          {...register(name, validationSchema)}
+          className="textField__input"
+          // value={value}
+          // onChange={onChange}
+          //name={name}
+          type={type}
+          id={name}
+          autoComplete="off"
+        />
+      )}
+
+      {errors && errors[name] && (
+        <span className="text-error block text-sm mt-2">
+          {errors[name]?.message}
+        </span>
+      )}
     </div>
   );
 }
