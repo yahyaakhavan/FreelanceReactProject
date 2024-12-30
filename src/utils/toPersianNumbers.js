@@ -45,7 +45,8 @@ export function toPersianNumbers(n) {
   return n.toString().replace(/\d/g, (x) => farsiDigits[parseInt(x)]);
 }
 export function toEnglishNumbers(n) {
-  return n
+  const clearComma = n.replaceAll(",", "");
+  return clearComma
     .toString()
     .replace(/[\u06F0-\u06F9]/g, (digit) => persianToEnglishMap[digit]);
 }

@@ -13,3 +13,9 @@ export function removeProjectAPI(id) {
     return res.data.data;
   });
 }
+
+export function createProjectAPI(data) {
+  return http.post("/project/add", data).then((res) => {
+    return res.data.data;
+  });
+}

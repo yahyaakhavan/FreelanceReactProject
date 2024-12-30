@@ -13,7 +13,7 @@ export default function TextField({
   setValue,
   /*value, onChange*/
 }) {
-  console.log(register(name), errors);
+  //console.log(register(name), errors);
 
   return (
     <div>
@@ -21,13 +21,13 @@ export default function TextField({
         {label}
         {required && <span className="text-error">*</span>}
       </label>
-      {name === "projectBudget" ? (
+      {name === "budget" ? (
         <input
-          {...register("projectBudget", {
+          {...register("budget", {
             onChange: (e) => {
               const persianValue = toPersianNumbersWithComma(e.target.value);
 
-              setValue("projectBudget", persianValue, {
+              setValue("budget", persianValue, {
                 shouldValidate: true,
               });
             },
@@ -42,7 +42,7 @@ export default function TextField({
           // onChange={onChange}
           //name={name}
           type={type}
-          id="projectBudget"
+          id="budget"
           autoComplete="off"
           placeholder="بودجه پروژه را مشخص نمایید."
         />

@@ -15,7 +15,11 @@ export default function ProjectsHeader() {
           setIsAddProject(false);
         }}
       >
-        <CreateProjectForm />
+        <CreateProjectForm
+          onClose={() => {
+            setIsAddProject(false);
+          }}
+        />
       </Modal>
       <button
         className=" flex gap-x-2 items-center btn btn--primary"
