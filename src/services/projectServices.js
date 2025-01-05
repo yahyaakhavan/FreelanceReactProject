@@ -19,3 +19,9 @@ export function createProjectAPI(data) {
     return res.data.data;
   });
 }
+
+export function editProjectAPI({ id, newProject }) {
+  return http.patch(`/project/update/${id}`, newProject).then((res) => {
+    return res.data.data;
+  });
+}

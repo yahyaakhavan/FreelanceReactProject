@@ -6,23 +6,53 @@ import { TagsInput } from "react-tag-input-component";
 import { useState } from "react";
 import DatePickerField from "../../ui/DatePickerField";
 import useCategories from "../../hooks/useCategories";
-import { toEnglishNumbers } from "../../utils/toPersianNumbers";
+import {
+  toEnglishNumbers,
+  toPersianNumbersWithComma,
+} from "../../utils/toPersianNumbers";
 import Loader from "../../ui/Loader";
 import useCreateProject from "./useCreateProject";
-export default function CreateProjectForm({ onClose }) {
+import useEditProject from "./useEditProject";
+export default function CreateProjectForm({ onClose, mustBeEdit = {} }) {
+  const { _id: editId } = mustBeEdit;
+  const isEditMode = Boolean(editId);
+
+  const {
+    title,
+    description,
+    budget,
+    category,
+    tags: prevTags,
+    deadline,
+  } = mustBeEdit;
+  let editValues = {};
+  if (isEditMode) {
+    editValues = {
+      title,
+      description,
+      budget: toPersianNumbersWithComma(budget),
+      category: category._id,
+      tags: prevTags,
+      deadline,
+    };
+  }
+
   const { isCreating, createProject } = useCreateProject();
+  const { isEditing, editProject } = useEditProject();
   const { categories, isLoading } = useCategories();
-  const [tags, setTags] = useState([]);
-  const [date, setDate] = useState(new Date());
+
+  const [tags, setTags] = useState(prevTags || []);
+  const [date, setDate] = useState(deadline ? new Date(deadline) : new Date());
 
   const {
     register,
-
     setValue,
     formState: { errors },
     handleSubmit,
     reset,
-  } = useForm();
+    watch,
+  } = useForm({ defaultValues: editValues });
+
   const onSubmit = (data) => {
     data.budget = Number(toEnglishNumbers(data.budget));
     const newProject = {
@@ -30,13 +60,25 @@ export default function CreateProjectForm({ onClose }) {
       tags,
       deadline: new Date(date).toISOString(),
     };
+
+    if (isEditMode) {
+      editProject(
+        { id: editId, newProject },
+        {
+          onSuccess: () => {
+            onClose();
+            reset();
+          },
+        }
+      );
+    } else {
+      createProject(newProject, {
+        onSuccess: () => {
+          onClose();
+        },
+      });
+    }
     //console.log(data);
-    createProject(newProject, {
-      onSuccess: () => {
-        onClose();
-        reset();
-      },
-    });
   };
   // const inputValue = watch("projectBudget", "");
   // console.log(inputValue);
@@ -50,6 +92,7 @@ export default function CreateProjectForm({ onClose }) {
         validationSchema={{
           required: "عنوان ضروری است",
           minLength: { value: 10, message: "طول عنوان نامعتبر است." },
+          maxLength: { value: 30, message: "طول عنوان نامعتبر است." },
           //pattern: { value: /^[a-zA-Z0-9]*$/, message: "طبق الگو." },
         }}
         errors={errors}
@@ -81,15 +124,23 @@ export default function CreateProjectForm({ onClose }) {
         errors={errors}
         setValue={setValue}
       />
-      <RHFSelect
-        label="دسته بندی"
-        name="category"
-        register={register}
-        options={categories}
-        required
-        validationschema={{ required: "انتخاب دسته بندی ضروری است" }}
-        errors={errors}
-      />
+      {!categories || categories.length === 0 ? (
+        <Loader />
+      ) : (
+        <RHFSelect
+          label="دسته بندی"
+          name="category"
+          register={register}
+          options={categories}
+          required
+          validationschema={{ required: "انتخاب دسته بندی ضروری است" }}
+          errors={errors}
+          prevValue={editValues?.category || ""}
+          setValue={setValue}
+          watch={watch}
+        />
+      )}
+
       <div>
         <label className="mb-2 block text-secondary-700">تگ</label>
         <TagsInput name="tags" value={tags} onChange={setTags} />
