@@ -25,3 +25,10 @@ export function editProjectAPI({ id, newProject }) {
     return res.data.data;
   });
 }
+
+export function changeProjectStatusAPI({ id, data }) {
+  //==>data={status:"OPEN||CLOSE"}
+  return http.patch(`/project/${id}`, data).then((res) => {
+    return res.data.data;
+  });
+}
