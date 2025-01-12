@@ -13,7 +13,7 @@ import Projects from "./pages/Projects";
 const queryClient = new QueryClient();
 function App() {
   return (
-    <div className="lg:container xl:max-w-screen-xl">
+    <div className="lg:container xl:max-w-screen-2xl">
       <QueryClientProvider client={queryClient}>
         <Toaster />
         <Routes>

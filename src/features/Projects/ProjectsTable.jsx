@@ -21,6 +21,7 @@ export default function ProjectsTable() {
           <th>فریلنسر</th>
           <th>وضعیت</th>
           <th>عملیات</th>
+          <th>درخواست ها</th>
         </Table.row>
       </Table.header>
       <Table.body>

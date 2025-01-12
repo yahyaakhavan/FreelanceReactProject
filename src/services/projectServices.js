@@ -32,3 +32,9 @@ export function changeProjectStatusAPI({ id, data }) {
     return res.data.data;
   });
 }
+
+export function getSingleProjectAPI(id) {
+  return http.get(`/project/${id}`).then((res) => {
+    return res.data.data;
+  });
+}

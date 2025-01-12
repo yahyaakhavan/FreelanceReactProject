@@ -3,7 +3,7 @@ import Loader from "./Loader";
 
 /* eslint-disable react/prop-types */
 export default function RHFSelect({
-  label,
+  lable,
   name,
   register,
   options,
@@ -11,6 +11,7 @@ export default function RHFSelect({
   validationschema,
   errors,
   prevValue,
+  defaultOptionLable,
 }) {
   // const selectedItem = watch(name);
   // console.log(options);
@@ -24,7 +25,7 @@ export default function RHFSelect({
   return (
     <div>
       <label className="mb-2 block text-secondary-700" htmlFor={name}>
-        {label}
+        {lable}
         {required && <span className="text-error">*</span>}
       </label>
       <select
@@ -33,14 +34,18 @@ export default function RHFSelect({
         id={name}
         defaultValue={prevValue || ""}
       >
-        <option value="" disabled>
-          دسته بندی پروژه را انتخاب نمایید.
-        </option>
+        {defaultOptionLable ? (
+          <option value="" disabled>
+            {defaultOptionLable}
+          </option>
+        ) : (
+          ""
+        )}
 
         {options.map((option) => {
           return (
             <option key={option.value} value={option.value}>
-              {option.label}
+              {option.lable}
             </option>
           );
         })}
