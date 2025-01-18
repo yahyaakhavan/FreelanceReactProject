@@ -1,9 +1,17 @@
 import { useEffect, useRef } from "react";
 
-export default function useOutsideClick(handler, listenCapturing = true) {
+export default function useOutsideClick(
+  handler,
+  btn_id,
+  listenCapturing = true
+) {
   const ref = useRef();
+
   useEffect(() => {
     function handleOutsideClick(e) {
+      if (btn_id && e.target.closest(`#${btn_id}`)) {
+        return;
+      }
       if (ref.current && !ref.current.contains(e.target)) {
         handler();
       }
@@ -23,6 +31,6 @@ export default function useOutsideClick(handler, listenCapturing = true) {
         listenCapturing
       );
     };
-  }, [handler, listenCapturing]);
+  }, [handler, listenCapturing, btn_id]);
   return ref;
 }

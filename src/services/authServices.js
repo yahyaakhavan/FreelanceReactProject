@@ -24,3 +24,8 @@ export function getUser() {
     return res.data.data;
   });
 }
+export function LogoutAPI() {
+  return http.post("/user/logout").then((res) => {
+    return res.data.data;
+  });
+}
