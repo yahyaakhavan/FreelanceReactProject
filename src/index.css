@@ -53,6 +53,12 @@
   }
 }
 
+&.dark-mode #root {
+  background-color: rgb(var(--color-secondary-0));
+}
+#root {
+  background-color: rgb(var(--color-secondary-0));
+}
 .rti--container {
   /*This class relates to the react-tag-input-component library*/
   background-color: rgb(var(--color-secondary-100)) !important;

@@ -67,11 +67,7 @@ export default function ProjectRow({ project, index }) {
               setIsDeleteOpen(true);
             }}
           >
-            <HiOutlineTrash
-              className="icon text-error);
-          );
-          "
-            />
+            <HiOutlineTrash className="icon text-error" />
           </button>
           <Modal
             open={isDeleteOpen}

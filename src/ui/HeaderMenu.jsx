@@ -39,7 +39,7 @@ export default function HeaderMenu() {
           });
         }}
       >
-        <BsThreeDotsVertical />
+        <BsThreeDotsVertical className="w-5 h-5 text-primary-900" />
       </button>
       {isOpen && (
         <HeaderMenuInSmallScreen
@@ -66,18 +66,22 @@ function HeaderMenuInSmallScreen({ onClose, btnID }) {
             to={"dashboard"}
           >
             <HiOutlineUser className="w-5 h-5 text-primary-900" />
-            <span>داشبورد</span>
+            <span className="text-[rgb(var(--color-secondary-600))]">
+              داشبورد
+            </span>
           </Link>
         </li>
         <li className="flex justify-center gap-x-2 items-center">
           <DarkModeToggle />
           <button>
-            <span>تم روز/شب</span>
+            <span className="text-[rgb(var(--color-secondary-600))]">
+              تم روز/شب
+            </span>
           </button>
         </li>
         <li>
           <LogOut>
-            <span>خروج</span>
+            <span className="text-[rgb(var(--color-secondary-600))]">خروج</span>
           </LogOut>
         </li>
       </ul>

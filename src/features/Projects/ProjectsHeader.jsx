@@ -7,7 +7,7 @@ export default function ProjectsHeader() {
   const [isAddProject, setIsAddProject] = useState(false);
   return (
     <div className="flex items-center justify-between mb-8">
-      <h1>پروژهای شما</h1>
+      <h1 className="text-secondary-600">پروژهای شما</h1>
       <Modal
         title="اضافه کردن پروژه جدید"
         open={isAddProject}

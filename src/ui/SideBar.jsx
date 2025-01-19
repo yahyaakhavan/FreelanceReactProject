@@ -62,7 +62,7 @@ function CustomNavLink({ to, children }) {
       to={to}
       className={({ isActive }) =>
         isActive
-          ? `${navLinkClasses} bg-primary-100/50 text-primary-900`
+          ? `${navLinkClasses} bg-primary-100/80 text-primary-900`
           : `${navLinkClasses} text-secondary-600`
       }
     >
