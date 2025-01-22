@@ -1,23 +1,14 @@
-import { HiCollection, HiHome } from "react-icons/hi";
-import CustomeNavLink from "../../ui/CustomeNavLink";
 import PageLayout from "../../ui/PageLayout";
 import SideBar from "../../ui/SideBar";
-import { useState } from "react";
+import CustomeNavLink from "../../ui/CustomeNavLink";
+import { HiCollection, HiHome } from "react-icons/hi";
 import { useSidebarStatus } from "../../context/SidebarStatusContext";
-
-export default function OwnerPageLayout() {
+export default function FreelancerPageLayout() {
   const { sidebarStatus } = useSidebarStatus();
   return (
-    <PageLayout
-    // isSideBarOpen={isSideBarOpen}
-    // setIsSideBarOpen={() => {
-    //   setIsSideBarOpen((prev) => {
-    //     return !prev;
-    //   });
-    // }}
-    >
+    <PageLayout>
       <SideBar>
-        <CustomeNavLink to="/owner/dashboard">
+        <CustomeNavLink to="dashboard">
           <HiHome />
           <span
             className={`sm:opacity-100 sm:w-auto sm:flex transition-opacity duration-300 ease-in-out ${
@@ -26,19 +17,31 @@ export default function OwnerPageLayout() {
                 : "opacity-0 w-0 hidden"
             }`}
           >
-            خانه
+            داشبورد
           </span>
         </CustomeNavLink>
-        <CustomeNavLink to="/owner/projects">
+        <CustomeNavLink to="projects">
           <HiCollection />
           <span
             className={`sm:opacity-100 sm:w-auto sm:flex transition-opacity duration-300 ease-in-out ${
               sidebarStatus
-                ? "opacity-100 w-auto visible"
+                ? "opacity-100 w-auto visible "
                 : "opacity-0 w-0 hidden"
             }`}
           >
             پروژه ها
+          </span>
+        </CustomeNavLink>
+        <CustomeNavLink to="proposals">
+          <HiCollection />
+          <span
+            className={`sm:opacity-100 sm:w-auto sm:flex transition-opacity duration-300 ease-in-out ${
+              sidebarStatus
+                ? "opacity-100 w-auto visible "
+                : "opacity-0 w-0 hidden"
+            }`}
+          >
+            درخواست ها
           </span>
         </CustomeNavLink>
       </SideBar>
