@@ -1,7 +1,7 @@
 import Stats from "./Stats";
-import DashboardHeader from "./DashboardHeader";
 import useProposals from "../Proposal/useProposals";
 import Loader from "../../ui/Loader";
+import DashboardHeader from "../../ui/DashboardHeader";
 export default function DashboardLayout() {
   const { proposals, isLoading } = useProposals();
   if (isLoading) {
