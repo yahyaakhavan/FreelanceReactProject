@@ -38,3 +38,8 @@ export function getSingleProjectAPI(id) {
     return res.data.data;
   });
 }
+export function getAllProjectsAPI() {
+  return http.get("/project/list").then((res) => {
+    return res.data.data;
+  });
+}
