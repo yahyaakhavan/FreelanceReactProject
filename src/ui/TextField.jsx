@@ -9,25 +9,22 @@ export default function TextField({
   required,
   validationSchema,
   errors,
-
+  placeholder,
   setValue,
-  /*value, onChange*/
 }) {
-  //console.log(register(name), errors);
-
   return (
     <div>
       <label className="mb-2 block text-secondary-700" htmlFor={name}>
         {label}
         {required && <span className="text-error">*</span>}
       </label>
-      {name === "budget" ? (
+      {name === "budget" || name === "duration" || name === "price" ? (
         <input
-          {...register("budget", {
+          {...register(name, {
             onChange: (e) => {
               const persianValue = toPersianNumbersWithComma(e.target.value);
 
-              setValue("budget", persianValue, {
+              setValue(name, persianValue, {
                 shouldValidate: true,
               });
             },
@@ -38,21 +35,15 @@ export default function TextField({
             required: validationSchema.required,
           })}
           className="textField__input"
-          // value={value}
-          // onChange={onChange}
-          //name={name}
           type={type}
-          id="budget"
+          id={name}
           autoComplete="off"
-          placeholder="بودجه پروژه را مشخص نمایید."
+          placeholder={placeholder}
         />
       ) : (
         <input
           {...register(name, validationSchema)}
           className="textField__input"
-          // value={value}
-          // onChange={onChange}
-          //name={name}
           type={type}
           id={name}
           autoComplete="off"

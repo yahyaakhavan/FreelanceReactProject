@@ -9,3 +9,8 @@ export function getProposalsAPI() {
     return res.data.data;
   });
 }
+export function addProposalAPI(data) {
+  return http.post("/proposal/add", data).then((res) => {
+    return res.data.data;
+  });
+}

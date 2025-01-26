@@ -8,8 +8,8 @@ import Stat from "../../ui/Stat";
 /* eslint-disable react/prop-types */
 export default function Stats({ projects }) {
   const numOfProjects = projects.length;
-  const numOfInprogressProject = projects.map((project) => {
-    return project.status === 2;
+  const numOfInprogressProject = projects.filter((project) => {
+    return project.status == "OPEN";
   }).length;
 
   const numOfProposals = projects.reduce((acc, curr) => {

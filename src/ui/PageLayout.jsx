@@ -13,8 +13,8 @@ export default function PageLayout({
 
   return (
     <div
-      className={`grid h-screen grid-rows-[auto_1fr] md:grid-cols-[15rem_1fr]
-        transition-[grid-template-columns] duration-300 ease-in-out ${
+      className={`2xl:container grid h-screen grid-rows-[auto_1fr] md:grid-cols-[15rem_1fr]
+        transition-[grid-template-columns] duration-500 ease-in-out ${
           sidebarStatus ? "grid-cols-[10rem_1fr]" : "grid-cols-[auto_1fr]"
         }`}
     >
@@ -38,7 +38,7 @@ export default function PageLayout({
       </div>
 
       <div className="bg-secondary-100 p-8 overflow-y-auto">
-        <div className="mx-auto max-w-screen-lg flex flex-col gap-y-12">
+        <div className="mx-auto max-w-screen-xl flex flex-col gap-y-12">
           <Outlet />
         </div>
       </div>

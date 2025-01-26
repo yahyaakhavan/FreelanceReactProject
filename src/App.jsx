@@ -19,7 +19,7 @@ import SubmittedProjects from "./pages/SubmittedProjects";
 const queryClient = new QueryClient();
 function App() {
   return (
-    <div className="lg:container xl:max-w-screen-2xl">
+    <div>
       <SidebarStatusProvider>
         <DarkModeProvider>
           <QueryClientProvider client={queryClient}>

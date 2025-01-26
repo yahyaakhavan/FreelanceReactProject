@@ -21,7 +21,7 @@ export default function Stats({ proposals }) {
     <div className="grid grid-cols-1 gap-y-8 gap-x-8 lg:grid-cols-3 ">
       <Stat
         color="primary"
-        title="پروژه ها"
+        title="درخواست ها"
         value={numOfProposals}
         icon={<HiOutlineViewGrid className="w-10 h-10 sm:w-20 sm:h-20" />}
       />

@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <div className="bg-secondary-0 py-4 px-8 border-b border-secondary-200 relative">
       <div
-        className={`container xl:max-w-screen-lg flex justify-end items-center gap-x-8 ${
+        className={`w-full flex justify-end items-center gap-x-8 ${
           isLoading ? "blur-sm opacity-50" : ""
         }`}
       >
