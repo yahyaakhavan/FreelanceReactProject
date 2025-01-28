@@ -128,7 +128,7 @@ export default function CreateProjectForm({ onClose, mustBeEdit = {} }) {
         <Loader />
       ) : (
         <RHFSelect
-          lable="دسته بندی"
+          label="دسته بندی"
           name="category"
           register={register}
           options={categories}
@@ -138,7 +138,7 @@ export default function CreateProjectForm({ onClose, mustBeEdit = {} }) {
           prevValue={editValues?.category || ""}
           setValue={setValue}
           watch={watch}
-          defaultOptionLable="دسته بندی پروژه را انتخاب نمایید."
+          defaultOptionlabel="دسته بندی پروژه را انتخاب نمایید."
         />
       )}
 

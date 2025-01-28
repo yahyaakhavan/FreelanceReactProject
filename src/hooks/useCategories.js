@@ -13,10 +13,10 @@ export default function useCategories() {
   } = data || {};
 
   const categories = rawCategories.map((item) => {
-    return { lable: item.title, value: item._id };
+    return { label: item.title, value: item._id };
   });
   const transformedCategories = rawCategories.map((item) => {
-    return { lable: item.title, value: item.englishTitle };
+    return { label: item.title, value: item.englishTitle };
   });
   return { categories, isLoading, transformedCategories };
 }

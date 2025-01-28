@@ -10,9 +10,9 @@ import Modal from "../../ui/Modal";
 import ChangeProposalStatus from "./ChangeProposalStatus";
 export function ProposalRow({ index, proposal }) {
   const status = [
-    { className: "badge--danger", lable: "رد شده" },
-    { className: "badge--secondary", lable: "در انتظار تایید" },
-    { className: "badge--success", lable: "تایید شده" },
+    { className: "badge--danger", label: "رد شده" },
+    { className: "badge--secondary", label: "در انتظار تایید" },
+    { className: "badge--success", label: "تایید شده" },
   ];
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -26,7 +26,7 @@ export function ProposalRow({ index, proposal }) {
       <td>{toPersianNumbersWithComma(proposal.price)}</td>
       <td>
         <span className={`badge ${status[proposal.status].className}`}>
-          {status[proposal.status].lable}
+          {status[proposal.status].label}
         </span>
       </td>
       <td>

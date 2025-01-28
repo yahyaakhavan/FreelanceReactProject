@@ -13,9 +13,9 @@ export default function ChangeProjectStatus({
   const { register, handleSubmit } = useForm();
   const QueryClient = useQueryClient();
   const options = [
-    { value: 0, lable: "رد شده" },
-    { value: 1, lable: "در انتظار تایید" },
-    { value: 2, lable: "تایید شده" },
+    { value: 0, label: "رد شده" },
+    { value: 1, label: "در انتظار تایید" },
+    { value: 2, label: "تایید شده" },
   ];
   const { id: projectID } = useParams();
   const { isPending, changeProjectStatus } = useChangeProposalStatus();
@@ -34,7 +34,7 @@ export default function ChangeProjectStatus({
     <form onSubmit={handleSubmit(onSubmit)}>
       <RHFSelect
         name="status"
-        lable="تغییر وضعیت پروپوزال"
+        label="تغییر وضعیت پروپوزال"
         register={register}
         options={options}
         required

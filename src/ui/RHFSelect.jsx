@@ -3,7 +3,7 @@ import Loader from "./Loader";
 
 /* eslint-disable react/prop-types */
 export default function RHFSelect({
-  lable,
+  label,
   name,
   register,
   options,
@@ -11,7 +11,7 @@ export default function RHFSelect({
   validationschema,
   errors,
   prevValue,
-  defaultOptionLable,
+  defaultOptionlabel,
 }) {
   // const selectedItem = watch(name);
   // console.log(options);
@@ -25,7 +25,7 @@ export default function RHFSelect({
   return (
     <div>
       <label className="mb-2 block text-secondary-700" htmlFor={name}>
-        {lable}
+        {label}
         {required && <span className="text-error">*</span>}
       </label>
       <select
@@ -34,9 +34,9 @@ export default function RHFSelect({
         id={name}
         defaultValue={prevValue || ""}
       >
-        {defaultOptionLable ? (
+        {defaultOptionlabel ? (
           <option value="" disabled>
-            {defaultOptionLable}
+            {defaultOptionlabel}
           </option>
         ) : (
           ""
@@ -45,7 +45,7 @@ export default function RHFSelect({
         {options.map((option) => {
           return (
             <option key={option.value} value={option.value}>
-              {option.lable}
+              {option.label}
             </option>
           );
         })}
