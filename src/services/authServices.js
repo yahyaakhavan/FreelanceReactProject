@@ -29,3 +29,9 @@ export function LogoutAPI() {
     return res.data.data;
   });
 }
+
+export function getUsersAPI() {
+  return http.get("/admin/user/list").then((res) => {
+    return res.data.data;
+  });
+}
