@@ -1,7 +1,13 @@
 /* eslint-disable react/prop-types */
 import RadioInput from "./RadioInput";
 
-export default function RadioInputGroup({ register, errors, watch, configs }) {
+export default function RadioInputGroup({
+  register,
+  errors,
+  watch,
+  configs,
+  prevSelectItem,
+}) {
   const { name, validationSchema = {}, options } = configs;
 
   return (
@@ -19,6 +25,7 @@ export default function RadioInputGroup({ register, errors, watch, configs }) {
               watch={watch}
               errors={errors}
               validationSchema={validationSchema}
+              prevSelectItem={prevSelectItem}
             />
           );
         })}

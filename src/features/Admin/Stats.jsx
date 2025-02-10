@@ -1,9 +1,4 @@
-import {
-  HiCollection,
-  HiCurrencyDollar,
-  HiOutlineViewGrid,
-  HiUser,
-} from "react-icons/hi";
+import { HiCollection, HiOutlineViewGrid, HiUser } from "react-icons/hi";
 import Stat from "../../ui/Stat";
 import { toPersianNumbersWithComma } from "../../utils/toPersianNumbers";
 

@@ -2,13 +2,12 @@
 export default function RadioInput({
   value,
   id,
-  onChange,
   name,
   label,
   register,
   validationSchema,
+  prevSelectItem,
   watch, //This function comes from react hook form and rerender based on the first argument
-  errors,
 }) {
   return (
     <div className="flex items-center gap-x-2">
@@ -19,8 +18,8 @@ export default function RadioInput({
         id={id}
         name={name}
         {...register(name, validationSchema)}
-        //onChange={onChange}
-        checked={watch(name) === value} //I think this line sepecifies role value
+        defaultChecked={prevSelectItem === value ? true : false}
+        //checked={watch(name) === value} //I think this line sepecifies role value
       />
       <label htmlFor={id}>{label}</label>
     </div>

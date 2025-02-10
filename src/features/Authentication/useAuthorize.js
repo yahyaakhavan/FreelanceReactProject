@@ -6,6 +6,10 @@ export default function useAuthorize() {
   if (!isLoading && user) {
     isAuthenticated = true;
   }
+  let isVarified = false;
+  if (!isLoading && user && Number(user.status) === 2) {
+    isVarified = true;
+  }
   let isAuthorized = false;
   const { pathname } = useLocation();
   const desiredRole = pathname.split("/").at(1);
@@ -15,5 +19,5 @@ export default function useAuthorize() {
       isAuthorized = true;
     }
   }
-  return { isLoading, user, isAuthenticated, isAuthorized };
+  return { isLoading, user, isAuthenticated, isAuthorized, isVarified };
 }

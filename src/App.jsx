@@ -19,6 +19,7 @@ import SubmittedProjects from "./pages/SubmittedProjects";
 import ProtectedRoute from "./ui/ProtectedRoute";
 import AdminPageLayout from "./features/Admin/AdminPageLayout";
 import AdminDashboard from "./pages/AdminDashboard";
+import Users from "./pages/Users";
 const queryClient = new QueryClient();
 function App() {
   return (
@@ -66,6 +67,7 @@ function App() {
               >
                 <Route index element={<Navigate to={"dashboard"} replace />} />
                 <Route path="dashboard" element={<AdminDashboard />} />
+                <Route path="users" element={<Users />} />
               </Route>
               <Route path="/" element={<Home />} />
               <Route path="*" element={<NotFound />} />
