@@ -1,14 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SendOTPForm from "./SendOTPForm";
 import CheckOTPForm from "./CheckOTPForm";
 import { useMutation } from "@tanstack/react-query";
 import { getOtp } from "../../services/authServices";
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
+import useUser from "./useUser";
+import { useNavigate } from "react-router-dom";
 
 export default function AuthContainer() {
+  const { user } = useUser();
+  const navigate = useNavigate();
+  useEffect(() => {
+    //user can not see auth page if he/she has logged in before
+    if (user) {
+      navigate("/", { replace: true });
+    }
+  }, [user, navigate]);
   const sendOtpHandler = async (data) => {
-    console.log(data);
     //This data comes from react hook form and it is an object with phoneNumber property and it's value
     try {
       Setstep(2);
