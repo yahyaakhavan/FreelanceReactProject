@@ -1,11 +1,13 @@
 /* eslint-disable react/prop-types */
 import { HiOutlineUser } from "react-icons/hi";
+
 import { Link } from "react-router-dom";
 import DarkModeToggle from "./DarkModeToggle";
 import LogOut from "../features/Authentication/LogOut";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { useState } from "react";
 import useOutsideClick from "../hooks/useOutsideClick";
+import LngMode from "./LngMode";
 
 export default function HeaderMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,6 +29,9 @@ export default function HeaderMenu() {
         </li>
         <li className="flex items-center">
           <LogOut />
+        </li>
+        <li className="flex items-center">
+          <LngMode />
         </li>
       </ul>
       <button
